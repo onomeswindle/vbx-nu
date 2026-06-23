@@ -1,6 +1,8 @@
 // AUTO-GENERATED from Resident Advisor (promoter 30291) via on-demand refresh.
-// Generated: 2026-06-23T13:26:36.168Z
-window.UPCOMING = [
+// Generated: 2026-06-23T13:34:57.215Z
+// Replaces the in-file UPCOMING array (mutated in place) so components pick it up.
+(function(){
+  var ev = [
   {
     "id": "ra-2410179",
     "slug": "ra-2410179",
@@ -230,3 +232,11 @@ window.UPCOMING = [
     }
   }
 ];
+  if (typeof UPCOMING !== "undefined" && Array.isArray(UPCOMING)) {
+    UPCOMING.length = 0;
+    Array.prototype.push.apply(UPCOMING, ev);
+    window.UPCOMING = UPCOMING;
+  } else {
+    window.UPCOMING = ev;
+  }
+})();
