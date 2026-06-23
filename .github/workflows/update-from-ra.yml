@@ -1,0 +1,31 @@
+name: Update events from Resident Advisor
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # every day at 06:00 UTC
+  workflow_dispatch: {}     # allow manual run from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Fetch RA and regenerate events
+        run: node scripts/update-from-ra.js
+      - name: Commit changes if any
+        run: |
+          git config user.name "vbx-bot"
+          git config user.email "bot@vbx.nu"
+          if [ -n "$(git status --porcelain vbx-site-repo/site/ra-events.js)" ]; then
+            git add vbx-site-repo/site/ra-events.js
+            git commit -m "Auto-update events from RA"
+            git push
+          else
+            echo "No event changes."
+          fi
