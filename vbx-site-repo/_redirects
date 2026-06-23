@@ -1,0 +1,16 @@
+# Clean URL redirects (strip .html)
+/index.html        /                  301
+/events.html       /events            301
+/label.html        /label             301
+/releases.html     /mixes             301
+/merch.html        /merch             301
+
+# Pretty URL rewrites
+/events            /events.html       200
+/label             /label.html        200
+/mixes             /releases.html     200
+/releases          /releases.html     200
+/merch             /merch.html        200
+
+# Event detail
+/e/:slug           /event.html?slug=:slug   200

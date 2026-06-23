@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VBX — Mixes</title>
+<meta name="description" content="VBX Mixes — residency mixes, recordings and broadcasts. Listen to the latest on SoundCloud." />
+<meta property="og:title" content="VBX — Mixes" />
+<meta property="og:description" content="Residency mixes, recordings and broadcasts from VBX. Listen on SoundCloud." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #0A0A0A; color: #E8E3D8;
+    font-family: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body { overflow-x: hidden; }
+  a { color: inherit; }
+  ::selection { background: #C8362F; color: #E8E3D8; }
+  span[data-red-square] { background: #C8362F; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+  body::-webkit-scrollbar { width: 10px; }
+  body::-webkit-scrollbar-track { background: #0A0A0A; }
+  body::-webkit-scrollbar-thumb { background: #2a2a2a; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+
+<script src="site/tokens.js"></script>
+<script src="site/data.js"></script>
+<script src="site/nav.js"></script>
+<script src="site/upcoming.js"></script>
+<script src="site/sections.js"></script>
+<script src="site/footer.js"></script>
+
+<script>
+const SC_USER = 'vbx-nu';
+const SC_URL = `https://soundcloud.com/${SC_USER}`;
+const SC_EMBED = () => {
+  const params = new URLSearchParams({
+    url: SC_URL,
+    color: '#c8362f',
+    auto_play: 'false',
+    hide_related: 'true',
+    show_comments: 'false',
+    show_user: 'true',
+    show_reposts: 'false',
+    show_teaser: 'false',
+    visual: 'false'
+  });
+  return `https://w.soundcloud.com/player/?${params.toString()}`;
+};
+function ReleasesHeader() {
+  return /*#__PURE__*/React.createElement("header", {
+    className: "vbx-section vbx-hero-pad",
+    style: {
+      padding: '140px 32px 60px',
+      background: VBX.ink,
+      color: VBX.bone
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "vbx-meta-rail",
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      borderBottom: `1px solid ${VBX.line}`,
+      paddingBottom: 18,
+      marginBottom: 60
+    }
+  }, /*#__PURE__*/React.createElement(MonoLabel, {
+    opacity: 0.7
+  }, /*#__PURE__*/React.createElement(RedSquare, {
+    size: 8,
+    style: {
+      marginRight: 10,
+      verticalAlign: 'middle',
+      transform: 'translateY(-1px)'
+    }
+  }), "MIXES"), /*#__PURE__*/React.createElement(MonoLabel, {
+    opacity: 0.55
+  }, "live feed \xB7 soundcloud.com/", SC_USER)), /*#__PURE__*/React.createElement("div", {
+    className: "vbx-events-header",
+    style: {
+      display: 'grid',
+      gridTemplateColumns: '1.3fr 1fr',
+      gap: 64,
+      alignItems: 'end'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "vbx-display-xl",
+    style: {
+      fontFamily: VBX.sans,
+      fontWeight: 900,
+      fontSize: 'clamp(80px, 12vw, 200px)',
+      letterSpacing: '-0.04em',
+      lineHeight: 0.85
+    }
+  }, "Mixes"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: VBX.serif,
+      fontWeight: 300,
+      fontSize: 24,
+      lineHeight: 1.4,
+      maxWidth: 520,
+      opacity: 0.8
+    }
+  }, "Podcasts, residency mixes and recordings from the nights. Streamed from the VBX SoundCloud feed \xB7 always the latest first.")));
+}
+function LivePlayer() {
+  return /*#__PURE__*/React.createElement("section", {
+    className: "vbx-section",
+    style: {
+      background: VBX.ink,
+      color: VBX.bone,
+      padding: '0 32px 120px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: 32,
+      display: 'flex',
+      justifyContent: 'flex-end'
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    href: SC_URL,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      textDecoration: 'none',
+      color: '#fff',
+      padding: '18px 28px',
+      background: '#FF5500',
+      fontFamily: VBX.mono,
+      fontSize: 12,
+      letterSpacing: 2,
+      textTransform: 'uppercase',
+      fontWeight: 600,
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 12,
+      whiteSpace: 'nowrap'
+    }
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "18",
+    height: "18",
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/React.createElement("path", {
+    d: "M1.2 13.5c-.1 0-.2.1-.2.2l-.2 1.6.2 1.6c0 .1.1.2.2.2s.2-.1.2-.2l.2-1.6-.2-1.6c0-.1-.1-.2-.2-.2zm1.5-.9c-.1 0-.2.1-.2.2l-.3 2.5.3 2.5c0 .1.1.2.2.2s.2-.1.2-.2l.3-2.5-.3-2.5c0-.1-.1-.2-.2-.2zm1.7-1.1c-.1 0-.3.1-.3.3l-.2 3.5.2 3.4c0 .2.1.3.3.3s.3-.1.3-.3l.3-3.4-.3-3.5c0-.2-.1-.3-.3-.3zm1.7-.4c-.2 0-.3.1-.3.3l-.2 3.9.2 3.7c0 .2.1.3.3.3s.3-.1.3-.3l.3-3.7-.3-3.9c0-.2-.1-.3-.3-.3zm1.8-.1c-.2 0-.4.2-.4.4l-.2 4 .2 3.8c0 .2.2.4.4.4s.4-.2.4-.4l.2-3.8-.2-4c0-.2-.2-.4-.4-.4zm1.8.6c-.2 0-.4.2-.4.4l-.2 3.4.2 3.8c0 .2.2.4.4.4s.4-.2.4-.4l.2-3.8-.2-3.4c0-.2-.2-.4-.4-.4zm1.9-1.6c-.3 0-.5.2-.5.5l-.2 4.5.2 3.7c0 .3.2.5.5.5s.5-.2.5-.5l.2-3.7-.2-4.5c0-.3-.2-.5-.5-.5zm1.9-.4c-.3 0-.5.2-.5.5v8.6c0 .3.2.5.5.5s.5-.2.5-.5V10.1c0-.3-.2-.5-.5-.5zm1.9-.5c-.3 0-.6.3-.6.6v8.9c0 .3.3.6.6.6s.6-.3.6-.6V9.7c0-.3-.3-.6-.6-.6zm1.9-.2c-.4 0-.6.3-.6.6v9.1c0 .3.3.6.6.6s.6-.3.6-.6V9c0-.3-.3-.6-.6-.6zm4.1 1c-.3-1.9-2-3.3-4-3.3-.5 0-1 .1-1.4.3-.3.1-.4.2-.4.4v11.4c0 .3.2.5.4.5h5.3c1.9 0 3.4-1.5 3.4-3.4 0-2-1.7-3.6-3.7-3.6-.7 0-1.3.2-1.6.5z"
+  })), "Follow on SoundCloud")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      border: `1px solid ${VBX.line}`,
+      background: '#0D0D0D',
+      position: 'relative'
+    }
+  }, /*#__PURE__*/React.createElement("iframe", {
+    title: "VBX on SoundCloud",
+    width: "100%",
+    height: "520",
+    frameBorder: "0",
+    scrolling: "no",
+    allow: "autoplay",
+    src: SC_EMBED(),
+    style: {
+      display: 'block',
+      width: '100%'
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginTop: 14,
+      fontFamily: VBX.mono,
+      fontSize: 11,
+      letterSpacing: 2,
+      textTransform: 'uppercase',
+      opacity: 0.55
+    }
+  }, /*#__PURE__*/React.createElement("span", null, "Player auto-loads the latest uploads \xB7 scroll within the frame for history"), /*#__PURE__*/React.createElement("a", {
+    href: SC_URL,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      textDecoration: 'none',
+      color: VBX.bone,
+      opacity: 0.9,
+      padding: '8px 14px',
+      border: `1px solid ${VBX.line}`
+    }
+  }, "Open in SoundCloud \u2197")));
+}
+function ReleasesApp() {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Nav, {
+    page: "releases"
+  }), /*#__PURE__*/React.createElement(ReleasesHeader, null), /*#__PURE__*/React.createElement(LivePlayer, null), /*#__PURE__*/React.createElement(Footer, null));
+}
+ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(ReleasesApp, null));
+
+</script>
+</body>
+</html>

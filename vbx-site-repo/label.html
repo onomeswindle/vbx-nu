@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VBX Records — Catalogue</title>
+<meta name="description" content="VBX Records — full catalogue. Vinyl from Ferro, Spokenn, Makcim & Levi, Frank Haag, Olsvangèr, DOTT, plus a record cut alongside Ricardo Villalobos." />
+<meta property="og:title" content="VBX Records — Catalogue" />
+<meta property="og:description" content="VBX Records full catalogue VBX001 — VBX010." />
+<meta property="og:type" content="website" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F2EFEA; color: #0A0A0A;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body { overflow-x: hidden; }
+  a { color: inherit; }
+  ::selection { background: #C8362F; color: #F2EFEA; }
+  span[data-red-square] { background: #C8362F; }
+  html { scroll-behavior: smooth; }
+  /* Scroll offset so anchor jumps land below the fixed nav. */
+  section[id] { scroll-margin-top: 80px; }
+
+  body::-webkit-scrollbar { width: 10px; }
+  body::-webkit-scrollbar-track { background: #0A0A0A; }
+  body::-webkit-scrollbar-thumb { background: #2a2a2a; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* Mobile: collapse the dense catalogue + release grids. */
+  @media (max-width: 768px) {
+    .vbx-cat-row { grid-template-columns: 70px 1fr 90px !important; gap: 12px !important; padding: 14px 0 !important; }
+    .vbx-cat-row > *:nth-child(3),
+    .vbx-cat-row > *:nth-child(4),
+    .vbx-cat-row > *:nth-child(5) { display: none !important; }
+    .vbx-cat-head > *:nth-child(3),
+    .vbx-cat-head > *:nth-child(4),
+    .vbx-cat-head > *:nth-child(5) { display: none !important; }
+    .vbx-release-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .vbx-release-grid > div:first-child > div:first-child { width: 100% !important; max-width: 360px !important; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+
+<script src="site/tokens.js"></script>
+<script src="site/data.js"></script>
+<script src="site/nav.js"></script>
+<script src="site/upcoming.js"></script>
+<script src="site/sections.js"></script>
+<script src="site/footer.js"></script>
+<script src="site/label-data.js"></script>
+<script src="site/label-v2.js"></script>
+
+<script>
+ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(LabelV2App, null));
+
+</script>
+</body>
+</html>
