@@ -1,30 +1,63 @@
 #!/usr/bin/env node
 /**
- * VBX â daily RA -> site updater.
+ * VBX — daily RA -> site updater.
  * Fetches VBX's events from Resident Advisor (promoter 30291), maps them to the
- * site's UPCOMING shape, and writes site/ra-events.js (which sets window.UPCOMING,
- * overriding the fallback data in data.js). Committed daily by a GitHub Action.
+ * site's UPCOMING shape, and writes site/ra-events.js (which mutates the in-file
+ * UPCOMING array in place, overriding the fallback data in data.js).
+ *
+ * RA is behind Cloudflare + DataDome, which 403s plain `fetch`/`curl` GETs. So we
+ * drive a real headless Chromium (Playwright) — it executes the DataDome JS
+ * challenge, lets the real Next.js page render, and we read __NEXT_DATA__ from the
+ * live DOM. Committed daily by a GitHub Action.
  */
 const fs = require('fs');
 const path = require('path');
+const { chromium } = require('playwright');
 
 const PROMOTER_URL = 'https://ra.co/promoters/30291';
 const OUT = path.join(__dirname, '..', 'vbx-site-repo', 'site', 'ra-events.js');
 const DAYS = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
+
+// Load the RA promoter page in a real browser and return the parsed __NEXT_DATA__
+// Apollo blob. A real Chromium clears DataDome's JS challenge that bare GETs fail.
+async function fetchNextData() {
+  const browser = await chromium.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-blink-features=AutomationControlled']
+  });
+  try {
+    const context = await browser.newContext({
+      userAgent: UA,
+      locale: 'en-GB',
+      timezoneId: 'Europe/Amsterdam',
+      viewport: { width: 1280, height: 800 }
+    });
+    // Trim the most obvious headless tell before any page script runs.
+    await context.addInitScript(() => {
+      Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+    });
+    const page = await context.newPage();
+    const resp = await page.goto(PROMOTER_URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    // The Next.js data island only exists on the real page. If DataDome serves a
+    // soft challenge it resolves and reloads to the real content within a few s.
+    try {
+      await page.waitForSelector('#__NEXT_DATA__', { timeout: 45000 });
+    } catch (e) {
+      const status = resp ? resp.status() : 'unknown';
+      const title = await page.title().catch(() => '');
+      throw new Error('RA page did not yield __NEXT_DATA__ (HTTP ' + status + ', title "' + title + '"). '
+        + 'Likely a DataDome block/CAPTCHA — try a residential proxy or re-run later.');
+    }
+    const json = await page.$eval('#__NEXT_DATA__', el => el.textContent);
+    return JSON.parse(json);
+  } finally {
+    await browser.close();
+  }
+}
 
 async function main() {
-  const res = await fetch(PROMOTER_URL, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36',
-      'Accept': 'text/html,application/xhtml+xml',
-      'Accept-Language': 'en-GB,en;q=0.9'
-    }
-  });
-  if (!res.ok) throw new Error('RA fetch failed: ' + res.status);
-  const html = await res.text();
-  const m = html.match(/id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
-  if (!m) throw new Error('Could not find __NEXT_DATA__ in RA page');
-  const data = JSON.parse(m[1]);
+  const data = await fetchNextData();
   const a = data.props.apolloState;
   const D = r => (r && r.__ref) ? a[r.__ref] : r;
 
@@ -70,9 +103,19 @@ async function main() {
 
   events.forEach(e => delete e._sort);
 
-  const banner = '// AUTO-GENERATED from Resident Advisor (promoter 30291). Do not edit by hand.\n'
-    + '// Last run: ' + new Date().toISOString() + '\n';
-  const body = banner + 'window.UPCOMING = ' + JSON.stringify(events, null, 2) + ';\n';
+  const banner = '// AUTO-GENERATED from Resident Advisor (promoter 30291).\n'
+    + '// Generated: ' + new Date().toISOString() + '\n';
+  const body = banner
+    + '(function(){\n'
+    + '  var ev = ' + JSON.stringify(events, null, 2) + ';\n'
+    + '  if (typeof UPCOMING !== "undefined" && Array.isArray(UPCOMING)) {\n'
+    + '    UPCOMING.length = 0;\n'
+    + '    Array.prototype.push.apply(UPCOMING, ev);\n'
+    + '    window.UPCOMING = UPCOMING;\n'
+    + '  } else {\n'
+    + '    window.UPCOMING = ev;\n'
+    + '  }\n'
+    + '})();\n';
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
   fs.writeFileSync(OUT, body);
   console.log('Wrote ' + events.length + ' upcoming events to ' + OUT);

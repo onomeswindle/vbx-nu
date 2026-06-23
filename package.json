@@ -1,0 +1,12 @@
+{
+  "name": "vbx-nu-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "VBX site tooling — refresh events from Resident Advisor.",
+  "scripts": {
+    "update": "node scripts/update-from-ra.js"
+  },
+  "dependencies": {
+    "playwright": "^1.48.0"
+  }
+}
