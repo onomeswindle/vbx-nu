@@ -15,7 +15,7 @@ const path = require('path');
 const { chromium } = require('playwright');
 
 const PROMOTER_URL = 'https://ra.co/promoters/30291';
-const OUT = path.join(__dirname, '..', 'vbx-site-repo', 'site', 'ra-events.js');
+const OUT = path.join(__dirname, '..', 'vbx-site-repo', 'site', 'ra-events.jsx');
 const DAYS = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 
@@ -107,17 +107,28 @@ async function main() {
   events.forEach(e => delete e._sort);
 
   const banner = '// AUTO-GENERATED from Resident Advisor (promoter 30291).\n'
-    + '// Generated: ' + new Date().toISOString() + '\n';
+    + '// Generated: ' + new Date().toISOString() + '\n'
+    + '// MERGE overlay: adds NEW RA shows to UPCOMING and drops past ones, but never\n'
+    + '// overwrites events already curated in data.jsx (matched by RA event id).\n';
   const body = banner
     + '(function(){\n'
     + '  var ev = ' + JSON.stringify(events, null, 2) + ';\n'
-    + '  if (typeof UPCOMING !== "undefined" && Array.isArray(UPCOMING)) {\n'
-    + '    UPCOMING.length = 0;\n'
-    + '    Array.prototype.push.apply(UPCOMING, ev);\n'
-    + '    window.UPCOMING = UPCOMING;\n'
-    + '  } else {\n'
-    + '    window.UPCOMING = ev;\n'
+    + '  var U = (window.UPCOMING && Array.isArray(window.UPCOMING)) ? window.UPCOMING : (window.UPCOMING = []);\n'
+    + '  function raId(e){\n'
+    + '    var m = String((e && e.ticketUrl) || "").match(/ra\\.co\\/events\\/(\\d+)/);\n'
+    + '    if (m) return m[1];\n'
+    + '    var s = String((e && e.slug) || (e && e.id) || "").match(/(\\d{6,})/);\n'
+    + '    return s ? s[1] : null;\n'
     + '  }\n'
+    + '  var seen = {};\n'
+    + '  U.forEach(function(e){ var id = raId(e); if (id) seen[id] = true; });\n'
+    + '  ev.forEach(function(e){ var id = raId(e); if (!id || !seen[id]) { U.push(e); if (id) seen[id] = true; } });\n'
+    + '  var today = new Date().toISOString().slice(0,10);\n'
+    + '  var merged = U.filter(function(e){ return e && e.date && e.date >= today; })\n'
+    + '               .sort(function(a, b){ return String(a.date).localeCompare(String(b.date)); });\n'
+    + '  U.length = 0;\n'
+    + '  Array.prototype.push.apply(U, merged);\n'
+    + '  window.UPCOMING = U;\n'
     + '})();\n';
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
   fs.writeFileSync(OUT, body);
