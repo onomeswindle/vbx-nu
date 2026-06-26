@@ -30,8 +30,7 @@ function App() {
   return (
     <>
       <Nav current={current} onNav={navTo} page="home" />
-      <Hero next={UPCOMING[0]} />
-      <NextThree events={UPCOMING} />
+      <Hero />
       <Footer />
       <TweaksPanel tweaks={tweaks} set={set} active={active} />
       {tweaks.showGrid && <GridOverlay />}
