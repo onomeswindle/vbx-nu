@@ -72,7 +72,10 @@ async function main() {
       const flyer = (img && img.filename) || e.flyerFront || null;
       const artists = (e.artists || []).map(x => D(x)).map(x => x && x.name).filter(Boolean);
       const dateISO = (e.date || '').slice(0, 10);
-      const d = new Date(e.date);
+      // Compute the weekday from the date-only string at UTC midnight, so it
+      // always matches the displayed date (avoids the off-by-one you get from
+      // parsing the full RA timestamp in a non-UTC zone).
+      const d = dateISO ? new Date(dateISO + 'T00:00:00Z') : new Date(NaN);
       const start = e.startTime ? new Date(e.startTime) : null;
       const areaName = (area && area.name && area.name !== 'All') ? area.name : (country && country.name) || '';
       return {
