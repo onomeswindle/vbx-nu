@@ -3,97 +3,62 @@
 
 function Hero({ next }) {
   return (
-    <header id="top" className="vbx-hero-pad" style={{
+    <header id="top" style={{
       position: 'relative',
       minHeight: '100vh',
-      padding: '140px 32px 48px',
       background: VBX.ink, color: VBX.bone,
       display: 'flex', flexDirection: 'column',
       overflow: 'hidden',
     }}>
-      <div className="vbx-meta-rail" style={{
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        borderBottom: `1px solid ${VBX.line}`, paddingBottom: 18, marginBottom: 80,
-      }}>
-        <MonoLabel opacity={0.7}>
-          <RedSquare size={8} style={{ marginRight: 10, verticalAlign: 'middle', transform: 'translateY(-1px)' }} />
-          AMSTERDAM · SINCE 2012
-        </MonoLabel>
+      {/* Ambient artwork — the next show's flyer blurred into a colour field. */}
+      <div aria-hidden="true" style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
+        {next.image && next.image.src && (
+          <img src={next.image.src} alt="" style={{
+            position: 'absolute', inset: 0, width: '100%', height: '100%',
+            objectFit: 'cover', transform: 'scale(1.7)',
+            filter: 'blur(40px) brightness(0.55) saturate(1.25)',
+          }} />
+        )}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(180deg, rgba(10,10,10,0.66), rgba(10,10,10,0.84))',
+        }} />
       </div>
 
-      <div className="vbx-grid-2 vbx-hero-grid" style={{
-        display: 'grid',
-        gridTemplateColumns: 'minmax(0, 1.35fr) minmax(0, 1fr)',
-        gap: 64, alignItems: 'start', flex: 1,
+      {/* Centered composition. */}
+      <div style={{
+        position: 'relative', zIndex: 2, flex: 1,
+        display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center', textAlign: 'center',
+        padding: '120px 24px 64px',
       }}>
-        <div>
-          <div className="vbx-display-xl" style={{
-            fontFamily: VBX.sans, fontWeight: 900,
-            fontSize: 'clamp(84px, 11vw, 180px)',
-            letterSpacing: '-0.04em', lineHeight: 0.92,
-            textWrap: 'balance',
-          }}>
-            Booking,<br />
-            curation,<br />
-            records.
-          </div>
+        <img src="site/assets/vbx-white.png" alt="VBX" style={{
+          width: 'clamp(72px, 8vw, 104px)', height: 'auto',
+          filter: 'drop-shadow(0 2px 30px rgba(0,0,0,0.5))',
+        }} />
 
-          <div style={{
-            marginTop: 36, maxWidth: 480,
-            fontFamily: VBX.sans, fontWeight: 500,
-            fontSize: 20, lineHeight: 1.4, letterSpacing: -0.2,
-            opacity: 0.7, textWrap: 'pretty',
-          }}>
-            Not a label. Not an agency — a booking &amp; curation brand from Amsterdam.
-          </div>
+        <div style={{ width: 64, height: 1, background: 'rgba(232,227,216,0.4)', margin: '34px 0' }} />
+
+        <div style={{ fontFamily: VBX.mono, fontSize: 11, letterSpacing: 3, textTransform: 'uppercase', opacity: 0.7 }}>
+          Next — {next.day} {next.dateLabel}
         </div>
 
-        <aside style={{
-          border: `1px solid ${VBX.line}`,
-          padding: 24, display: 'flex', flexDirection: 'column',
-          background: 'rgba(232,227,216,0.02)',
-        }}>
-          <div style={{
-            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-            paddingBottom: 14, borderBottom: `1px solid ${VBX.line}`, marginBottom: 18,
-          }}>
-            <MonoLabel opacity={0.7}>
-              <RedSquare size={7} style={{ marginRight: 8, verticalAlign: 'middle', transform: 'translateY(-1px)' }} />
-              Next up
-            </MonoLabel>
-            <MonoLabel opacity={0.55}>{next.status}</MonoLabel>
-          </div>
+        <div style={{
+          fontFamily: VBX.sans, fontWeight: 600,
+          fontSize: 'clamp(32px, 4.6vw, 60px)',
+          letterSpacing: '-0.025em', lineHeight: 1.0,
+          marginTop: 14, maxWidth: 900, textWrap: 'balance',
+        }}>{next.title}</div>
 
-          <MonoLabel size={10} opacity={0.55}>{next.day} · {next.dateLabel}</MonoLabel>
+        <div style={{
+          fontFamily: VBX.serif, fontWeight: 300,
+          fontSize: 'clamp(15px, 1.6vw, 19px)', opacity: 0.8, marginTop: 12,
+        }}>{next.venue} · {next.city}</div>
 
-          <div className="vbx-display-l" style={{
-            fontFamily: VBX.sans, fontWeight: 900,
-            fontSize: 'clamp(40px, 4.4vw, 72px)',
-            letterSpacing: '-0.03em', lineHeight: 0.92,
-            marginTop: 10, marginBottom: 12, textWrap: 'balance',
-          }}>{next.title}</div>
-
-          <div style={{
-            fontFamily: VBX.serif, fontWeight: 300, fontSize: 18, lineHeight: 1.3,
-            opacity: 0.75, marginBottom: 18,
-          }}>{next.venue} · {next.city}</div>
-
-          <div style={{ marginBottom: 18, borderTop: `1px solid ${VBX.line}`, borderBottom: `1px solid ${VBX.line}`, background: VBX.ink, display: 'flex', justifyContent: 'center' }}>
-            <img
-              src={next.image && next.image.src}
-              alt={next.image && next.image.label}
-              style={{ maxWidth: '100%', maxHeight: 420, width: 'auto', height: 'auto', objectFit: 'contain', display: 'block' }}
-            />
-          </div>
-
-          <div style={{ flex: 1 }} />
-
-          <div style={{ display: 'flex', gap: 10, marginTop: 24 }}>
-            <TicketButton status={next.status} url={next.ticketUrl} provider={next.provider} buyUrl={next.buyUrl} />
-          </div>
-        </aside>
+        <div style={{ display: 'flex', gap: 10, marginTop: 30 }}>
+          <TicketButton status={next.status} url={next.ticketUrl} provider={next.provider} buyUrl={next.buyUrl} />
+        </div>
       </div>
-
     </header>
   );
 }

@@ -82,8 +82,8 @@ function EventsApp() {
       </header>
 
       {/* Featured next event — big poster */}
-      {upcomingFiltered[0] &&
-      <FeaturedNext e={upcomingFiltered[0]} />
+      {upcomingFiltered.length > 0 &&
+      <UpcomingPosters events={upcomingFiltered} total={UPCOMING.length} />
       }
 
       {/* Upcoming list */}
@@ -91,13 +91,19 @@ function EventsApp() {
         background: VBX.ink, color: VBX.bone, padding: '80px 32px',
         borderTop: `1px solid ${VBX.line}`
       }}>
-        <SectionHeader number="01" label="Upcoming" count={`${upcomingFiltered.length} dates`} />
+        <div style={{
+          display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
+          borderBottom: `1px solid ${VBX.line}`, paddingBottom: 16, marginBottom: 8,
+        }}>
+          <MonoLabel opacity={0.75}>The full list</MonoLabel>
+          <MonoLabel opacity={0.5}>{upcomingFiltered.length} dates</MonoLabel>
+        </div>
         {upcomingFiltered.length === 0 ?
         <EmptyRow text="No upcoming shows match the filter." /> :
 
         <ol style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-            {upcomingFiltered.slice(upcomingFiltered[0] ? 1 : 0).map((e, i) =>
-          <EventLinkRow key={e.id} event={e} index={i + 2} />
+            {upcomingFiltered.map((e, i) =>
+          <EventLinkRow key={e.id} event={e} index={i + 1} />
           )}
             {upcomingFiltered.length === 1 &&
           <li style={{ padding: '32px 0', borderBottom: `1px solid ${VBX.line}`,
@@ -162,6 +168,69 @@ function FilterRow({ label, items, value, onChange, note }) {
       </div>
     </div>);
 
+}
+
+function UpcomingPosters({ events, total }) {
+  const cards = events.slice(0, 4);
+  return (
+    <section className="vbx-section" style={{
+      background: VBX.ink, color: VBX.bone,
+      padding: '56px 32px 76px', borderTop: `1px solid ${VBX.line}`,
+    }}>
+      <div style={{
+        display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
+        borderBottom: `1px solid ${VBX.line}`, paddingBottom: 16, marginBottom: 34,
+      }}>
+        <MonoLabel opacity={0.8}>
+          <RedSquare size={7} style={{ marginRight: 10, verticalAlign: 'middle', transform: 'translateY(-1px)' }} />
+          Nº 01 — Upcoming
+        </MonoLabel>
+        <MonoLabel opacity={0.55}>{total} dates · On sale</MonoLabel>
+      </div>
+
+      <div className="vbx-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
+        {cards.map(e => <PosterCard key={e.id} e={e} />)}
+      </div>
+
+      <div style={{ marginTop: 34 }}>
+        <a href="#upcoming-list" style={{
+          display: 'inline-flex', alignItems: 'center', gap: 10,
+          fontFamily: VBX.mono, fontSize: 12, letterSpacing: 2,
+          textTransform: 'uppercase', color: VBX.bone, textDecoration: 'none',
+        }}>
+          <RedSquare size={7} /> All {total} dates →
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function PosterCard({ e }) {
+  const [hover, setHover] = React.useState(false);
+  const link = e.buyUrl || e.ticketUrl;
+  return (
+    <a
+      href={link || '#upcoming-list'}
+      target={link ? '_blank' : undefined}
+      rel={link ? 'noopener' : undefined}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      style={{ display: 'block', color: VBX.bone, textDecoration: 'none' }}
+    >
+      <div style={{ aspectRatio: '1 / 1.1', background: '#000', overflow: 'hidden', border: `1px solid ${VBX.line}` }}>
+        {e.image && e.image.src
+          ? <img src={e.image.src} alt={e.image.label} style={{
+              width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+              transform: hover ? 'scale(1.03)' : 'none', transition: 'transform 320ms ease',
+            }} />
+          : <Photo label={e.image && e.image.label} />}
+      </div>
+      <div style={{ marginTop: 14 }}>
+        <MonoLabel size={10} opacity={0.6}>{e.day} {e.dateLabel}</MonoLabel>
+        <div style={{ fontFamily: VBX.sans, fontWeight: 600, fontSize: 18, letterSpacing: -0.3, marginTop: 6, lineHeight: 1.2 }}>{e.title}</div>
+      </div>
+    </a>
+  );
 }
 
 function FeaturedNext({ e }) {

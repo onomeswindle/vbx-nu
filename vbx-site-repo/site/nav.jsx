@@ -121,7 +121,7 @@ function Nav({ current = 'index', onNav, page = 'home' }) {
                 textTransform: 'uppercase', color: VBX.bone,
                 padding: '10px 14px', textDecoration: 'none',
                 opacity: active ? 1 : 0.65,
-                borderBottom: active ? `1px solid ${VBX.bone}` : '1px solid transparent',
+                borderBottom: active ? `1px solid ${VBX.red}` : '1px solid transparent',
                 transition: 'opacity 120ms ease',
                 position: 'relative',
               }}
