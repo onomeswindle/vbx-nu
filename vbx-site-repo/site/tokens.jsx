@@ -7,11 +7,11 @@
   // When bundled into a standalone file, window.__resources holds blob URLs for fonts.
   // Otherwise fall back to the on-disk paths relative to the HTML file.
   const R = window.__resources || {};
-  const fLight = R.fontLight || 'site/assets/fonts/BasisGrotesqueArabicPro-Light.ttf';
+  const fLight   = R.fontLight   || 'site/assets/fonts/BasisGrotesqueArabicPro-Light.ttf';
   const fRegular = R.fontRegular || 'site/assets/fonts/BasisGrotesqueArabicPro-Regular.ttf';
-  const fMedium = R.fontMedium || 'site/assets/fonts/BasisGrotesqueArabicPro-Medium.ttf';
-  const fBold = R.fontBold || 'site/assets/fonts/BasisGrotesqueArabicPro-Bold.ttf';
-  const fBlack = R.fontBlack || 'site/assets/fonts/BasisGrotesqueArabicPro-Black.ttf';
+  const fMedium  = R.fontMedium  || 'site/assets/fonts/BasisGrotesqueArabicPro-Medium.ttf';
+  const fBold    = R.fontBold    || 'site/assets/fonts/BasisGrotesqueArabicPro-Bold.ttf';
+  const fBlack   = R.fontBlack   || 'site/assets/fonts/BasisGrotesqueArabicPro-Black.ttf';
   const s = document.createElement('style');
   s.id = 'vbx-fonts';
   s.textContent = `
@@ -168,79 +168,48 @@
   `;
   document.head.appendChild(s);
 })();
+
 const VBX_FONT = `'Basis Grotesque Arabic Pro', "Helvetica Neue", Helvetica, Arial, sans-serif`;
+
 const VBX = {
-  ink: '#0A0A0A',
-  inkSoft: '#141418',
-  bone: '#E8E3D8',
-  boneWarm: '#F2EFEA',
-  stone: '#B8B4AD',
-  mute: '#8A8680',
-  line: 'rgba(232,227,216,0.18)',
-  lineInk: 'rgba(10,10,10,0.18)',
-  red: '#C8362F',
-  // the red-square signature
-  orange: '#C95A1F',
-  // faded orange, archive edition
-  aubergine: '#2A1A22',
-  tobacco: '#4A3A2A',
+  ink:        '#0A0A0A',
+  inkSoft:    '#141418',
+  bone:       '#E8E3D8',
+  boneWarm:   '#F2EFEA',
+  stone:      '#B8B4AD',
+  mute:       '#8A8680',
+  line:       'rgba(232,227,216,0.18)',
+  lineInk:    'rgba(10,10,10,0.18)',
+  red:        '#C8362F',      // the red-square signature
+  orange:     '#C95A1F',      // faded orange, archive edition
+  aubergine:  '#2A1A22',
+  tobacco:    '#4A3A2A',
+
   // Everything in Basis Grotesque Arabic Pro. Italics fall back to the same face (no true italic cut available).
-  sans: VBX_FONT,
-  mono: VBX_FONT,
-  serif: VBX_FONT
+  sans:  VBX_FONT,
+  mono:  VBX_FONT,
+  serif: VBX_FONT,
 };
 
 // Red-square flag — recurring signature mark.
-function RedSquare({
-  size = 10,
-  style
-}) {
-  return /*#__PURE__*/React.createElement("span", {
-    style: {
-      display: 'inline-block',
-      width: size,
-      height: size,
-      background: VBX.red,
-      flex: 'none',
-      ...style
-    }
-  });
+function RedSquare({ size = 10, style }) {
+  return <span style={{
+    display: 'inline-block', width: size, height: size,
+    background: VBX.red, flex: 'none', ...style,
+  }} />;
 }
 
 // Mono caps label with letterspacing discipline.
-function MonoLabel({
-  children,
-  size = 11,
-  spacing = 2.5,
-  opacity = 0.7,
-  color,
-  style,
-  className
-}) {
-  return /*#__PURE__*/React.createElement("span", {
-    className: className,
-    style: {
-      fontFamily: VBX.mono,
-      fontSize: size,
-      letterSpacing: spacing,
-      textTransform: 'uppercase',
-      opacity,
-      color,
-      display: 'inline-block',
-      ...style
-    }
-  }, children);
+function MonoLabel({ children, size = 11, spacing = 2.5, opacity = 0.7, color, style, className }) {
+  return <span className={className} style={{
+    fontFamily: VBX.mono, fontSize: size, letterSpacing: spacing,
+    textTransform: 'uppercase', opacity, color,
+    display: 'inline-block', ...style,
+  }}>{children}</span>;
 }
 
 // Photo — renders a real image if `src` is provided, otherwise a striped placeholder with `label`.
-function Photo({
-  src,
-  label,
-  tone = 'dark',
-  style,
-  children,
-  fit = 'cover'
-}) {
+function Photo({ src, label, tone = 'dark', style, children, fit = 'cover' }) {
   const isDark = tone === 'dark';
   const bg = isDark ? '#1A1A1A' : '#D9D4CC';
   const fg = isDark ? 'rgba(232,227,216,0.55)' : 'rgba(10,10,10,0.55)';
@@ -249,75 +218,47 @@ function Photo({
   // background behind it — the empty letterbox area should blend with the
   // parent section. Only show the bg/stripe when rendering a placeholder.
   const showBg = !src || fit !== 'contain';
-  return /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: 'relative',
-      width: '100%',
-      height: '100%',
+  return (
+    <div style={{
+      position: 'relative', width: '100%', height: '100%',
       background: showBg ? bg : 'transparent',
       backgroundImage: src ? 'none' : `repeating-linear-gradient(45deg, ${stripe} 0 2px, transparent 2px 14px)`,
       overflow: 'hidden',
-      ...style
-    }
-  }, src && /*#__PURE__*/React.createElement("img", {
-    src: src,
-    alt: label || '',
-    style: {
-      position: 'absolute',
-      inset: 0,
-      width: '100%',
-      height: '100%',
-      objectFit: fit,
-      display: 'block'
-    }
-  }), !src && label && /*#__PURE__*/React.createElement("div", {
-    style: {
-      position: 'absolute',
-      inset: 0,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: fg,
-      fontFamily: VBX.mono,
-      fontSize: 10,
-      letterSpacing: 2.5,
-      textTransform: 'uppercase',
-      textAlign: 'center',
-      padding: 12,
-      lineHeight: 1.6,
-      whiteSpace: 'pre-line'
-    }
-  }, label), children);
+      ...style,
+    }}>
+      {src && <img src={src} alt={label || ''} style={{
+        position: 'absolute', inset: 0, width: '100%', height: '100%',
+        objectFit: fit, display: 'block',
+      }} />}
+      {!src && label && <div style={{
+        position: 'absolute', inset: 0,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        color: fg, fontFamily: VBX.mono, fontSize: 10, letterSpacing: 2.5,
+        textTransform: 'uppercase', textAlign: 'center', padding: 12, lineHeight: 1.6,
+        whiteSpace: 'pre-line',
+      }}>{label}</div>}
+      {children}
+    </div>
+  );
 }
 
 // VBX wordmark — real logo PNG. `color` picks the variant (bone/white → white art, anything else → black art).
-function Wordmark({
-  size = 28,
-  color = '#E8E3D8',
-  style
-}) {
-  const useWhite = typeof color === 'string' && (color.toLowerCase() === '#fff' || color.toLowerCase() === '#ffffff' || color.toLowerCase() === 'white' || color === '#E8E3D8' || color === VBX.bone);
-  const R = typeof window !== 'undefined' && window.__resources || {};
-  const src = useWhite ? R.logoWhite || 'site/assets/vbx-white.png' : R.logoBlack || 'site/assets/vbx-black.png';
+function Wordmark({ size = 28, color = '#E8E3D8', style }) {
+  const useWhite = typeof color === 'string' && (
+    color.toLowerCase() === '#fff' || color.toLowerCase() === '#ffffff' ||
+    color.toLowerCase() === 'white' || color === '#E8E3D8' || color === VBX.bone
+  );
+  const R = (typeof window !== 'undefined' && window.__resources) || {};
+  const src = useWhite
+    ? (R.logoWhite || 'site/assets/vbx-white.png')
+    : (R.logoBlack || 'site/assets/vbx-black.png');
   // Source logo is ~1000×470 (aspect ~2.13)
   const height = size;
   const width = size * 2.13;
-  return /*#__PURE__*/React.createElement("img", {
-    src: src,
-    alt: "vbx",
-    style: {
-      height,
-      width,
-      display: 'inline-block',
-      objectFit: 'contain',
-      ...style
-    }
-  });
+  return <img src={src} alt="vbx" style={{
+    height, width, display: 'inline-block', objectFit: 'contain',
+    ...style,
+  }} />;
 }
-Object.assign(window, {
-  VBX,
-  RedSquare,
-  MonoLabel,
-  Photo,
-  Wordmark
-});
+
+Object.assign(window, { VBX, RedSquare, MonoLabel, Photo, Wordmark });

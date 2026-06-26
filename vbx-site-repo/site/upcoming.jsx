@@ -1,0 +1,170 @@
+// Upcoming — list of events below the hero.
+// Editorial row-style: date numeral · venue · title + lineup · ticket.
+// Hover reveals image + crosshair cursor. Row opens full detail block inline.
+
+function Upcoming({ events }) {
+  const [openId, setOpenId] = React.useState(null);
+  return (
+    <section id="upcoming" data-screen-label="Upcoming" style={{
+      background: VBX.ink, color: VBX.bone,
+      padding: '120px 32px',
+      borderTop: `1px solid ${VBX.line}`,
+    }}>
+      <SectionHeader number="01" label="Upcoming" count={`${events.length} dates`} />
+
+      <ol style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+        {events.map((e, i) => (
+          <EventRow key={e.id} event={e} index={i + 1}
+            open={openId === e.id}
+            onToggle={() => setOpenId(openId === e.id ? null : e.id)} />
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+function SectionHeader({ number, label, count, sub }) {
+  return (
+    <div className="vbx-section-header" style={{
+      display: 'grid', gridTemplateColumns: '80px 1fr auto', gap: 32,
+      alignItems: 'baseline',
+      borderBottom: `1px solid ${VBX.line}`,
+      paddingBottom: 18, marginBottom: 32,
+    }}>
+      <MonoLabel size={11} opacity={0.55}>N<span style={{ letterSpacing: 0 }}>º</span> {number}</MonoLabel>
+      <div style={{
+        fontFamily: VBX.sans, fontWeight: 900, fontSize: 44, letterSpacing: -1.2, lineHeight: 1,
+      }}>
+        {label}
+        {sub && <span style={{
+          fontFamily: VBX.serif, fontWeight: 300, fontWeight: 400,
+          fontSize: 20, letterSpacing: 0, marginLeft: 18, opacity: 0.6,
+        }}>— {sub}</span>}
+      </div>
+      {count && <MonoLabel opacity={0.55}>{count}</MonoLabel>}
+    </div>
+  );
+}
+
+function EventRow({ event: e, index, open, onToggle }) {
+  const [hover, setHover] = React.useState(false);
+  const soldOut = e.status === 'SOLD OUT';
+
+  return (
+    <li style={{ borderBottom: `1px solid ${VBX.line}` }}>
+      <div
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        onClick={onToggle}
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '72px 180px 140px 1fr auto',
+          gap: 24, alignItems: 'center',
+          padding: '28px 0',
+          cursor: 'pointer',
+          position: 'relative',
+        }}
+      >
+        {/* index */}
+        <MonoLabel size={10} opacity={0.4}>{String(index).padStart(2, '0')}</MonoLabel>
+
+        {/* date */}
+        <div>
+          <div style={{
+            fontFamily: VBX.sans, fontWeight: 900, fontSize: 28,
+            letterSpacing: -0.8, lineHeight: 1,
+          }}>{e.dateLabel}</div>
+          <MonoLabel size={10} opacity={0.55} style={{ marginTop: 6 }}>{e.day}</MonoLabel>
+        </div>
+
+        {/* venue */}
+        <div>
+          <div style={{
+            fontFamily: VBX.sans, fontWeight: 900, fontSize: 22, letterSpacing: -0.3, lineHeight: 1,
+          }}>{e.venue}</div>
+          <MonoLabel size={10} opacity={0.5} style={{ marginTop: 6 }}>{e.city}</MonoLabel>
+        </div>
+
+        {/* title + headliners */}
+        <div>
+          <div style={{
+            fontFamily: VBX.sans, fontWeight: 500, fontSize: 19, letterSpacing: -0.2, lineHeight: 1.3,
+            opacity: hover ? 1 : 0.88,
+          }}>{e.title}</div>
+          <div style={{
+            fontFamily: VBX.serif, fontWeight: 300, fontSize: 15,
+            opacity: 0.6, marginTop: 6, lineHeight: 1.3,
+          }}>
+            {e.headliners.join(' · ')}
+          </div>
+        </div>
+
+        {/* status / tickets */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <MonoLabel size={10} opacity={soldOut ? 0.5 : 0.9} color={soldOut ? VBX.mute : VBX.bone}>
+            {soldOut && <RedSquare size={6} style={{ marginRight: 8, verticalAlign: 'middle', transform: 'translateY(-1px)' }} />}
+            {e.status}
+          </MonoLabel>
+          <span style={{
+            fontFamily: VBX.mono, fontSize: 18, opacity: 0.45,
+            transform: open ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform 180ms',
+            display: 'inline-block', width: 14, textAlign: 'center',
+          }}>→</span>
+        </div>
+      </div>
+
+      {open && (
+        <div style={{
+          display: 'grid', gridTemplateColumns: '72px 1fr', gap: 24,
+          padding: '0 0 40px',
+        }}>
+          <div />
+          <div style={{
+            display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 40,
+            paddingTop: 4,
+          }}>
+            {/* Photo block */}
+            <div style={{ height: 360, border: `1px solid ${VBX.line}` }}>
+              <Photo src={e.image && e.image.src} label={e.image.label} fit="cover" />
+            </div>
+
+            {/* Details */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
+              <div style={{
+                fontFamily: VBX.serif, fontWeight: 300, fontSize: 26,
+                letterSpacing: -0.3, lineHeight: 1.3, textWrap: 'pretty',
+              }}>
+                {e.blurb}
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '100px 1fr', gap: 10, rowGap: 14,
+                borderTop: `1px solid ${VBX.line}`, paddingTop: 18,
+                fontFamily: VBX.mono, fontSize: 11, letterSpacing: 1.4, lineHeight: 1.5,
+              }}>
+                <span style={{ opacity: 0.5 }}>DOORS</span><span>{e.doors}</span>
+                <span style={{ opacity: 0.5 }}>CLOSE</span><span>{e.close}</span>
+                <span style={{ opacity: 0.5 }}>LINEUP</span>
+                <div>
+                  {e.headliners.map((h, i) => <div key={i}>{h}</div>)}
+                  {e.support.length > 0 && <div style={{ opacity: 0.55, marginTop: 4 }}>
+                    + {e.support.join(' · ')}
+                  </div>}
+                </div>
+                <span style={{ opacity: 0.5 }}>VENUE</span><span>{e.venue} · {e.city}</span>
+                {e.provider && <>
+                  <span style={{ opacity: 0.5 }}>TICKETS</span><span>via {e.provider}</span>
+                </>}
+              </div>
+
+              <div style={{ marginTop: 4 }}>
+                <TicketButton status={e.status} url={e.ticketUrl} provider={e.provider} buyUrl={e.buyUrl} />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </li>
+  );
+}
+
+Object.assign(window, { Upcoming, SectionHeader, EventRow });
