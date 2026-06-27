@@ -130,7 +130,7 @@ const UPCOMING = [
     buyUrl: 'https://ra.co/events/2470638',
     provider: 'RA',
     blurb: 'ADE Friday at Lofi. An all-night VBX session running through to morning.',
-    image: { src: null, label: 'VBX — Lofi, Amsterdam' },
+    image: { src: 'site/assets/flyers/lofi-ade-2026.webp', label: 'VBX — Lofi, Amsterdam' },
   },
   {
     id: 'evt-vbx-bret-2410',
@@ -243,17 +243,22 @@ const ARCHIVE = [
   // FEBRUARY 2026
   { date: '2026-02-28', dateLabel: '28.02.26', day: 'SAT', venue: 'TILLATEC', city: 'Amsterdam', title: 'VBX14 Anniversary', soldOut: true, pick: true,
     blurb: 'From Amsterdam to the world, VBX celebrate 14 years with a day-to-night anniversary at TILLATEC, led by Vera and Dresden.',
-    lineup: ['Vera', 'Reiss', 'Olsvangèr', 'Noach', 'Lo Ds', 'Garrett David', 'Gabrielle Kwarteng', 'Dresden', 'Cap', 'Byron Yeates', 'Bennet (DE)', 'Alexia Glensy'] },
+    lineup: ['Vera', 'Reiss', 'Olsvangèr', 'Noach', 'Lo Ds', 'Garrett David', 'Gabrielle Kwarteng', 'Dresden', 'Cap', 'Byron Yeates', 'Bennet (DE)', 'Alexia Glensy'],
+    image: { src: 'site/assets/flyers/vbx14.png', label: 'VBX14 Anniversary — Tillatec, Amsterdam' } },
   { date: '2026-02-07', dateLabel: '07.02.26', day: 'SAT', venue: 'LE 211', city: 'Paris', title: 'Automatic X VBX Afterparty', soldOut: true,
-    lineup: ['DJ Senc', 'Automatic Writing'] },
+    lineup: ['DJ Senc', 'Automatic Writing'],
+    image: { src: 'site/assets/flyers/automatic-le211.png', label: 'Automatic × VBX Afterparty — Le 211, Paris' } },
   { date: '2026-02-06', dateLabel: '06.02.26', day: 'FRI', venue: 'CABARET SAUVAGE', city: 'Paris', title: 'Automatic x VBX', soldOut: true,
-    lineup: ['Francesco Del Garda', 'Doudou MD', 'LAMALICE'] },
+    lineup: ['Francesco Del Garda', 'Doudou MD', 'LAMALICE'],
+    image: { src: 'site/assets/flyers/automatic-cabaret-sauvage.png', label: 'Automatic × VBX — Cabaret Sauvage, Paris' } },
 
   // JANUARY 2026
   { date: '2026-01-26', dateLabel: '26.01.26', day: 'MON', venue: 'WHY NOT CLUB', city: 'Zanzibar, TZ', title: 'VBX x Sunny Side Festival x Why?Not',
-    lineup: ['UJ/DV', 'Reiss', 'Morgan', 'Hamish & Toby', 'JNJS', 'Bella Sarris'] },
+    lineup: ['UJ/DV', 'Reiss', 'Morgan', 'Hamish & Toby', 'JNJS', 'Bella Sarris'],
+    image: { src: 'site/assets/flyers/zanzibar.png', label: 'VBX x Sunny Side x Why?Not — Zanzibar' } },
   { date: '2026-01-10', dateLabel: '10.01.26', day: 'SAT', venue: 'LOST BEACH CLUB', city: 'Ecuador', title: 'VBX — Trotamundo',
-    lineup: ['Melchior Productions Ltd', 'Hannecart', 'Daniel Bell', 'Dana Ruh', 'Dandy Jack', 'Caruan', 'Cabanne'] },
+    lineup: ['Melchior Productions Ltd', 'Hannecart', 'Daniel Bell', 'Dana Ruh', 'Dandy Jack', 'Caruan', 'Cabanne'],
+    image: { src: 'site/assets/flyers/trotamundo.png', label: 'VBX — Trotamundo, Ecuador' } },
 
   // DECEMBER 2025
   { date: '2025-12-06', dateLabel: '06.12.25', day: 'SAT', venue: 'TILLATEC', city: 'Amsterdam', title: 'VBX 24hrs | TILLATEC 06.12', soldOut: true, pick: true,
