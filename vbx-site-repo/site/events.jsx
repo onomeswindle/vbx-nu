@@ -472,8 +472,15 @@ function PastTable({ items }) {
             {open &&
             <div className="vbx-past-expansion vbx-grid-2" style={{
               padding: '4px 0 36px 60px',
-              display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40
+              display: 'grid',
+              gridTemplateColumns: a.image && a.image.src ? 'minmax(0, 0.7fr) 1fr 1fr' : '1fr 1fr',
+              gap: 40
             }}>
+                {a.image && a.image.src &&
+                <div className="vbx-event-artwork" style={{ aspectRatio: '4 / 5' }}>
+                  <Photo src={a.image.src} label={a.image.label || `${a.venue} · ${a.dateLabel}`} fit="contain" />
+                </div>
+                }
                 <div>
                   <MonoLabel size={10} opacity={0.55}>{a.day} · {a.dateLabel} · {a.city}</MonoLabel>
                   <div style={{

@@ -137,7 +137,7 @@ function ArchiveTile({ a }) {
       }}
     >
       <div style={{ position: 'absolute', inset: 0, opacity: hover ? 1 : 0.55, transition: 'opacity 200ms' }}>
-        <Photo label={`${a.venue}\n${a.dateLabel}`} />
+        <Photo src={a.image && a.image.src} label={`${a.venue}\n${a.dateLabel}`} />
       </div>
       <div style={{
         position: 'absolute', inset: 0,
