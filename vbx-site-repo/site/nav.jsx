@@ -36,7 +36,6 @@ function Nav({ current = 'index', onNav, page = 'home' }) {
   // Home gets in-page anchors; other pages link back to home sections.
   const isHome = page === 'home';
   const links = [
-    { id: 'tickets', label: 'Tickets', href: 'tickets.html' },
     { id: 'events',  label: 'Events',  href: 'events.html' },
     { id: 'records', label: 'Label', href: 'label.html' },
     { id: 'releases', label: 'Mixes',   href: 'releases.html' },
