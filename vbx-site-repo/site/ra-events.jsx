@@ -1,10 +1,238 @@
 // AUTO-GENERATED from Resident Advisor (promoter 30291).
-// Generated: (placeholder — no RA fetch yet; run scripts/update-from-ra.js from a
-// clean network to populate this with live RA events)
+// Generated: (weekly RA refresh 2026-06-29T09:27:52.290Z — 9 events)
 // MERGE overlay: adds NEW RA shows to UPCOMING and drops past ones, but never
 // overwrites events already curated in data.jsx (matched by RA event id).
 (function(){
-  var ev = [];
+  var ev = [
+  {
+    "id": "ra-2410179",
+    "slug": "ra-2410179",
+    "date": "2026-07-04",
+    "dateLabel": "04.07.26",
+    "day": "FRI",
+    "city": "Netherlands",
+    "venue": "Galderse Meren",
+    "region": "International",
+    "title": "Ploegendienst Festival - 04.07 - Breda, NL",
+    "headliners": [
+      "Quest (IT)",
+      "Ogazón",
+      "Francesco Del Garda",
+      "Alexia Glensy"
+    ],
+    "support": [],
+    "doors": "11:00",
+    "close": "",
+    "status": "ON SALE",
+    "ticketUrl": "https://ra.co/events/2410179",
+    "buyUrl": "https://ra.co/events/2410179",
+    "provider": "RA",
+    "blurb": "",
+    "image": {
+      "src": "https://images.ra.co/3eb6e227bfb5c7d8aca4065186bffb9e34c45543.png",
+      "label": "Ploegendienst Festival - 04.07 - Breda, NL"
+    }
+  },
+  {
+    "id": "ra-2409740",
+    "slug": "ra-2409740",
+    "date": "2026-07-04",
+    "dateLabel": "04.07.26",
+    "day": "FRI",
+    "city": "Amsterdam",
+    "venue": "TILLATEC",
+    "region": "Local",
+    "title": "VBX Summer Weekend",
+    "headliners": [
+      "Rey Colino",
+      "Paquita Gordon",
+      "Muallem",
+      "Ion Ludwig",
+      "Ekkel",
+      "Alexia Glensy"
+    ],
+    "support": [],
+    "doors": "21:00",
+    "close": "",
+    "status": "ON SALE",
+    "ticketUrl": "https://ra.co/events/2409740",
+    "buyUrl": "https://ra.co/events/2409740",
+    "provider": "RA",
+    "blurb": "",
+    "image": {
+      "src": "https://images.ra.co/57bb3d5ec2be2d5f4d7f733d5de25eb8891c74ad.jpg",
+      "label": "VBX Summer Weekend"
+    }
+  },
+  {
+    "id": "ra-2452232",
+    "slug": "ra-2452232",
+    "date": "2026-07-05",
+    "dateLabel": "05.07.26",
+    "day": "SAT",
+    "city": "Amsterdam",
+    "venue": "De Fik Garden",
+    "region": "Local",
+    "title": "VBX Summer Weekend After",
+    "headliners": [],
+    "support": [],
+    "doors": "07:00",
+    "close": "",
+    "status": "ON SALE",
+    "ticketUrl": "https://ra.co/events/2452232",
+    "buyUrl": "https://ra.co/events/2452232",
+    "provider": "RA",
+    "blurb": "",
+    "image": {
+      "src": "https://images.ra.co/0b9f931366c57092fe1828a7fd3fb5649ae00f51.png",
+      "label": "VBX Summer Weekend After"
+    }
+  },
+  {
+    "id": "ra-2452373",
+    "slug": "ra-2452373",
+    "date": "2026-08-01",
+    "dateLabel": "01.08.26",
+    "day": "FRI",
+    "city": "Amsterdam",
+    "venue": "BRET",
+    "region": "Local",
+    "title": "VBX Pride",
+    "headliners": [],
+    "support": [],
+    "doors": "18:00",
+    "close": "",
+    "status": "ON SALE",
+    "ticketUrl": "https://ra.co/events/2452373",
+    "buyUrl": "https://ra.co/events/2452373",
+    "provider": "RA",
+    "blurb": "",
+    "image": {
+      "src": "https://images.ra.co/d35d5262321895a3f497b60c1b0494b954688ade.png",
+      "label": "VBX Pride"
+    }
+  },
+  {
+    "id": "ra-2469789",
+    "slug": "ra-2469789",
+    "date": "2026-10-22",
+    "dateLabel": "22.10.26",
+    "day": "WED",
+    "city": "Amsterdam",
+    "venue": "Skatecafe",
+    "region": "Local",
+    "title": "Shanti Celeste Curates VBX - Skatecafe - ADE 22.10",
+    "headliners": [],
+    "support": [],
+    "doors": "21:00",
+    "close": "",
+    "status": "ON SALE",
+    "ticketUrl": "https://ra.co/events/2469789",
+    "buyUrl": "https://ra.co/events/2469789",
+    "provider": "RA",
+    "blurb": "",
+    "image": {
+      "src": "https://images.ra.co/0ca0f2f53311d34f17669a4e5e5578849cc06bca.png",
+      "label": "Shanti Celeste Curates VBX - Skatecafe - ADE 22.10"
+    }
+  },
+  {
+    "id": "ra-2469603",
+    "slug": "ra-2469603",
+    "date": "2026-10-24",
+    "dateLabel": "24.10.26",
+    "day": "FRI",
+    "city": "Amsterdam",
+    "venue": "BRET",
+    "region": "Local",
+    "title": "VBX - BRET - 24.10",
+    "headliners": [],
+    "support": [],
+    "doors": "05:00",
+    "close": "",
+    "status": "ON SALE",
+    "ticketUrl": "https://ra.co/events/2469603",
+    "buyUrl": "https://ra.co/events/2469603",
+    "provider": "RA",
+    "blurb": "",
+    "image": {
+      "src": "https://images.ra.co/e6d1b20c6965fe90f72d199a17b5cf50dd7c0fa6.png",
+      "label": "VBX - BRET - 24.10"
+    }
+  },
+  {
+    "id": "ra-2469610",
+    "slug": "ra-2469610",
+    "date": "2026-10-24",
+    "dateLabel": "24.10.26",
+    "day": "FRI",
+    "city": "Amsterdam",
+    "venue": "TBA",
+    "region": "Local",
+    "title": "Can You Jigit? - SECRET WAREHOUSE - ADE 24.10",
+    "headliners": [],
+    "support": [],
+    "doors": "18:00",
+    "close": "",
+    "status": "ON SALE",
+    "ticketUrl": "https://ra.co/events/2469610",
+    "buyUrl": "https://ra.co/events/2469610",
+    "provider": "RA",
+    "blurb": "",
+    "image": {
+      "src": "",
+      "label": "Can You Jigit? - SECRET WAREHOUSE - ADE 24.10"
+    }
+  },
+  {
+    "id": "ra-2469614",
+    "slug": "ra-2469614",
+    "date": "2026-10-25",
+    "dateLabel": "25.10.26",
+    "day": "SAT",
+    "city": "Amsterdam",
+    "venue": "TBA",
+    "region": "Local",
+    "title": "Jane Fitz curates VBX - SECRET WAREHOUSE - ADE 25.10",
+    "headliners": [],
+    "support": [],
+    "doors": "12:00",
+    "close": "",
+    "status": "ON SALE",
+    "ticketUrl": "https://ra.co/events/2469614",
+    "buyUrl": "https://ra.co/events/2469614",
+    "provider": "RA",
+    "blurb": "",
+    "image": {
+      "src": "https://images.ra.co/1279a9475cfe45c79d72ae4ec97252618021ae0f.png",
+      "label": "Jane Fitz curates VBX - SECRET WAREHOUSE - ADE 25.10"
+    }
+  },
+  {
+    "id": "ra-2469608",
+    "slug": "ra-2469608",
+    "date": "2026-10-25",
+    "dateLabel": "25.10.26",
+    "day": "SAT",
+    "city": "Amsterdam",
+    "venue": "Shelter Amsterdam",
+    "region": "Local",
+    "title": "Apollonia curates VBX - Shelter - ADE 25.10",
+    "headliners": [],
+    "support": [],
+    "doors": "22:00",
+    "close": "",
+    "status": "ON SALE",
+    "ticketUrl": "https://ra.co/events/2469608",
+    "buyUrl": "https://ra.co/events/2469608",
+    "provider": "RA",
+    "blurb": "",
+    "image": {
+      "src": "https://images.ra.co/99cf10ebe8cebbdab5a4154e5b7ee5ea384633a7.png",
+      "label": "Apollonia curates VBX - Shelter - ADE 25.10"
+    }
+  }
+];
   var U = (window.UPCOMING && Array.isArray(window.UPCOMING)) ? window.UPCOMING : (window.UPCOMING = []);
   function raId(e){
     var m = String((e && e.ticketUrl) || "").match(/ra\.co\/events\/(\d+)/);
