@@ -6,7 +6,6 @@
 /merch.html        /merch             301
 
 # Pretty URL rewrites
-/dashboard         /dashboard.html    200
 /events            /events.html       200
 /label             /label.html        200
 /mixes             /releases.html     200
