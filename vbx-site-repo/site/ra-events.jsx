@@ -5,90 +5,6 @@
 (function(){
   var ev = [
   {
-    "id": "ra-2410179",
-    "slug": "ra-2410179",
-    "date": "2026-07-04",
-    "dateLabel": "04.07.26",
-    "day": "FRI",
-    "city": "Netherlands",
-    "venue": "Galderse Meren",
-    "region": "International",
-    "title": "Ploegendienst Festival - 04.07 - Breda, NL",
-    "headliners": [
-      "Quest (IT)",
-      "Ogazón",
-      "Francesco Del Garda",
-      "Alexia Glensy"
-    ],
-    "support": [],
-    "doors": "11:00",
-    "close": "",
-    "status": "ON SALE",
-    "ticketUrl": "https://ra.co/events/2410179",
-    "buyUrl": "https://ra.co/events/2410179",
-    "provider": "RA",
-    "blurb": "",
-    "image": {
-      "src": "https://images.ra.co/3eb6e227bfb5c7d8aca4065186bffb9e34c45543.png",
-      "label": "Ploegendienst Festival - 04.07 - Breda, NL"
-    }
-  },
-  {
-    "id": "ra-2409740",
-    "slug": "ra-2409740",
-    "date": "2026-07-04",
-    "dateLabel": "04.07.26",
-    "day": "FRI",
-    "city": "Amsterdam",
-    "venue": "TILLATEC",
-    "region": "Local",
-    "title": "VBX Summer Weekend",
-    "headliners": [
-      "Rey Colino",
-      "Paquita Gordon",
-      "Muallem",
-      "Ion Ludwig",
-      "Ekkel",
-      "Alexia Glensy"
-    ],
-    "support": [],
-    "doors": "21:00",
-    "close": "",
-    "status": "ON SALE",
-    "ticketUrl": "https://ra.co/events/2409740",
-    "buyUrl": "https://ra.co/events/2409740",
-    "provider": "RA",
-    "blurb": "",
-    "image": {
-      "src": "https://images.ra.co/57bb3d5ec2be2d5f4d7f733d5de25eb8891c74ad.jpg",
-      "label": "VBX Summer Weekend"
-    }
-  },
-  {
-    "id": "ra-2452232",
-    "slug": "ra-2452232",
-    "date": "2026-07-05",
-    "dateLabel": "05.07.26",
-    "day": "SAT",
-    "city": "Amsterdam",
-    "venue": "De Fik Garden",
-    "region": "Local",
-    "title": "VBX Summer Weekend After",
-    "headliners": [],
-    "support": [],
-    "doors": "07:00",
-    "close": "",
-    "status": "ON SALE",
-    "ticketUrl": "https://ra.co/events/2452232",
-    "buyUrl": "https://ra.co/events/2452232",
-    "provider": "RA",
-    "blurb": "",
-    "image": {
-      "src": "https://images.ra.co/0b9f931366c57092fe1828a7fd3fb5649ae00f51.png",
-      "label": "VBX Summer Weekend After"
-    }
-  },
-  {
     "id": "ra-2452373",
     "slug": "ra-2452373",
     "date": "2026-08-01",
@@ -97,8 +13,15 @@
     "city": "Amsterdam",
     "venue": "BRET",
     "region": "Local",
-    "title": "VBX Pride",
-    "headliners": [],
+    "title": "VBX BRET",
+    "headliners": [
+      "Poggio",
+      "Hannecart",
+      "Gabriel Belabbas",
+      "Franziska Berns",
+      "DIEDE",
+      "Charlotte (FR)"
+    ],
     "support": [],
     "doors": "18:00",
     "close": "",
@@ -108,8 +31,8 @@
     "provider": "RA",
     "blurb": "",
     "image": {
-      "src": "https://images.ra.co/d35d5262321895a3f497b60c1b0494b954688ade.png",
-      "label": "VBX Pride"
+      "src": "https://images.ra.co/40574987edab5603c4afd61505d1636cea582cc9.png",
+      "label": "VBX BRET"
     }
   },
   {
@@ -145,7 +68,7 @@
     "city": "Amsterdam",
     "venue": "BRET",
     "region": "Local",
-    "title": "VBX - BRET - 24.10",
+    "title": "VBX - BRET - ADE 24.10",
     "headliners": [],
     "support": [],
     "doors": "05:00",
@@ -157,7 +80,7 @@
     "blurb": "",
     "image": {
       "src": "https://images.ra.co/e6d1b20c6965fe90f72d199a17b5cf50dd7c0fa6.png",
-      "label": "VBX - BRET - 24.10"
+      "label": "VBX - BRET - ADE 24.10"
     }
   },
   {
@@ -169,7 +92,7 @@
     "city": "Amsterdam",
     "venue": "TBA",
     "region": "Local",
-    "title": "Can You Jigit? - SECRET WAREHOUSE - ADE 24.10",
+    "title": "Can You Jigit? - SECRET WAREHOUSE - SATURDAY 24.10",
     "headliners": [],
     "support": [],
     "doors": "18:00",
@@ -180,8 +103,8 @@
     "provider": "RA",
     "blurb": "",
     "image": {
-      "src": "",
-      "label": "Can You Jigit? - SECRET WAREHOUSE - ADE 24.10"
+      "src": "https://images.ra.co/2ea1299e51c895646222979f3116b10c30c9099f.jpg",
+      "label": "Can You Jigit? - SECRET WAREHOUSE - SATURDAY 24.10"
     }
   },
   {
@@ -193,8 +116,15 @@
     "city": "Amsterdam",
     "venue": "TBA",
     "region": "Local",
-    "title": "Jane Fitz curates VBX - SECRET WAREHOUSE - ADE 25.10",
-    "headliners": [],
+    "title": "Jane Fitz curates VBX - SECRET WAREHOUSE - SUNDAY 25.10",
+    "headliners": [
+      "Oriana",
+      "Michelle",
+      "Jane Fitz",
+      "Richard Fearless",
+      "Bitzer Maloney",
+      "Alexia Glensy"
+    ],
     "support": [],
     "doors": "12:00",
     "close": "",
@@ -204,8 +134,8 @@
     "provider": "RA",
     "blurb": "",
     "image": {
-      "src": "https://images.ra.co/1279a9475cfe45c79d72ae4ec97252618021ae0f.png",
-      "label": "Jane Fitz curates VBX - SECRET WAREHOUSE - ADE 25.10"
+      "src": "https://images.ra.co/47ca258a93d9e38b190ab83904a14f990ad696bc.png",
+      "label": "Jane Fitz curates VBX - SECRET WAREHOUSE - SUNDAY 25.10"
     }
   },
   {
