@@ -1,5 +1,5 @@
 // AUTO-GENERATED from Resident Advisor (promoter 30291).
-// Generated: (weekly RA refresh 2026-06-29T09:27:52.290Z — 9 events)
+// Generated: (weekly RA refresh 2026-07-20T07:13:22.162Z — 7 events)
 // MERGE overlay: adds NEW RA shows to UPCOMING and drops past ones, but never
 // overwrites events already curated in data.jsx (matched by RA event id).
 (function(){
@@ -160,6 +160,30 @@
     "image": {
       "src": "https://images.ra.co/99cf10ebe8cebbdab5a4154e5b7ee5ea384633a7.png",
       "label": "Apollonia curates VBX - Shelter - ADE 25.10"
+    }
+  },
+  {
+    "id": "ra-2489846",
+    "slug": "ra-2489846",
+    "date": "2026-10-26",
+    "dateLabel": "26.10.26",
+    "day": "SUN",
+    "city": "Amsterdam",
+    "venue": "TILLATEC",
+    "region": "Local",
+    "title": "VBX x fabric x Loud-Contact presented by TILLATEC",
+    "headliners": [],
+    "support": [],
+    "doors": "08:00",
+    "close": "",
+    "status": "ON SALE",
+    "ticketUrl": "https://ra.co/events/2489846",
+    "buyUrl": "https://ra.co/events/2489846",
+    "provider": "RA",
+    "blurb": "",
+    "image": {
+      "src": "https://images.ra.co/06a93a8a411825ca9ebb624fd48ecae7e77013b4.png",
+      "label": "VBX x fabric x Loud-Contact presented by TILLATEC"
     }
   }
 ];
