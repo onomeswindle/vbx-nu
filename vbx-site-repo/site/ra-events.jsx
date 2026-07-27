@@ -1,5 +1,5 @@
 // AUTO-GENERATED from Resident Advisor (promoter 30291).
-// Generated: (weekly RA refresh 2026-07-20T07:13:22.162Z — 7 events)
+// Generated: (weekly RA refresh 2026-07-27T07:11:55.936Z — 7 events)
 // MERGE overlay: adds NEW RA shows to UPCOMING and drops past ones, but never
 // overwrites events already curated in data.jsx (matched by RA event id).
 (function(){
