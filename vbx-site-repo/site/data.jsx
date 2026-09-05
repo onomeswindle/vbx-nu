@@ -10,6 +10,26 @@ function _img(id, path) {
 
 const UPCOMING = [
   {
+    id: 'evt-summer-closing-2026',
+    slug: 'vbx-summer-closing-2026',
+    date: '2026-09-19',
+    dateLabel: '19.09.26',
+    day: 'SAT',
+    city: 'Amsterdam',
+    venue: 'TILLATEC',
+    region: 'Local',
+    title: 'VBX Summer Closing',
+    headliners: ['Velasco', 'Tommy Chikara', 'THC', 'PHIA', 'Nosedrip', 'dj sweet6teen', 'DJ Split'],
+    support: [],
+    doors: '23:00',
+    close: '08:00',
+    status: 'ON SALE',
+    buyUrl: 'https://weeztix.shop/wm8dfs4c',
+    provider: 'Weeztix',
+    blurb: 'The last night of summer at Tillatec, 23.00 to 08.00.',
+    image: { src: 'site/assets/flyers/summer-closing-2026.jpg', label: 'VBX Summer Closing — Tillatec, Amsterdam' },
+  },
+  {
     id: 'evt-summer-closing-after-2026',
     slug: 'vbx-summer-closing-after-2026',
     date: '2026-09-20',
