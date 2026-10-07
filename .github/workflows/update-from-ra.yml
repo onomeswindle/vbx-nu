@@ -1,9 +1,10 @@
 name: Update events from Resident Advisor
 
 on:
-  schedule:
-    - cron: '0 6 * * *'   # every day at 06:00 UTC
-  workflow_dispatch: {}     # allow manual run from the Actions tab
+  # Manual only. RA (DataDome) returns 403 to GitHub-hosted runners, so a daily
+  # schedule only produced a failure mail every morning. Run it from the Actions
+  # tab if you want to try; it writes vbx-site-repo/site/ra-events.jsx on success.
+  workflow_dispatch: {}
 
 permissions:
   contents: write
