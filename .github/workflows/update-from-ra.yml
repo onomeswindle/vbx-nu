@@ -22,8 +22,8 @@ jobs:
         run: |
           git config user.name "vbx-bot"
           git config user.email "bot@vbx.nu"
-          if [ -n "$(git status --porcelain vbx-site-repo/site/ra-events.js)" ]; then
-            git add vbx-site-repo/site/ra-events.js
+          if [ -n "$(git status --porcelain vbx-site-repo/site/ra-events.jsx)" ]; then
+            git add vbx-site-repo/site/ra-events.jsx
             git commit -m "Auto-update events from RA"
             git push
           else
