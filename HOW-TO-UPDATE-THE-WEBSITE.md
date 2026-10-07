@@ -72,9 +72,9 @@ The most common mistake is a missing comma or quote. The events page then shows 
 
 ## The automatic Resident Advisor sync (optional, not reliable)
 
-There is a GitHub Action, `.github/workflows/update-from-ra.yml`, that is meant to pull VBX's events from RA (promoter 30291) every morning and write them into `vbx-site-repo/site/ra-events.jsx`. That file only adds shows that are not yet in `data.jsx`; it never overwrites what you typed by hand.
+There is a GitHub Action, `.github/workflows/update-from-ra.yml`, that can pull VBX's events from RA (promoter 30291) and write them into `vbx-site-repo/site/ra-events.jsx`. That file only adds shows that are not yet in `data.jsx`; it never overwrites what you typed by hand.
 
-In practice it rarely works because RA blocks automated browsers. Do not rely on it. If you want to try it: Actions tab, "Update events from Resident Advisor", "Run workflow". If it fails, ignore it and edit `data.jsx` by hand as above.
+It is manual only, because RA blocks GitHub's servers (HTTP 403 on 07.10.2026 after the dependencies were fixed). To try it: Actions tab, "Update events from Resident Advisor", "Run workflow". If it fails, edit `data.jsx` by hand as above. Running the script from a normal laptop (`npm ci`, `npx playwright install chromium`, `npm run update`, then commit `ra-events.jsx`) usually works.
 
 ## Ownership to transfer when the programmer changes
 
