@@ -108,7 +108,7 @@ const UPCOMING = [
     buyUrl: 'https://shop.weeztix.com/3a80d530-3b80-415e-bfb4-8a78670181c6/tickets?shop_code=qczarsds',
     provider: 'Weeztix',
     blurb: 'ADE Saturday at BRET. Line-up announced shortly.',
-    image: { src: 'site/assets/flyers/vbx-bret-2410-2026.png', label: 'VBX — BRET, Amsterdam' },
+    image: { src: 'site/assets/flyers/bret-ade-2026.new.jpg', label: 'VBX — BRET, Amsterdam' },
   },
   {
     id: 'evt-canyoujigit-ade',
